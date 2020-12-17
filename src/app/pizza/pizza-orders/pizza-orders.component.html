@@ -1,0 +1,44 @@
+<h1 [innerText]="title"></h1>
+<br>
+<table class="table table-hover table-striped" *ngIf="pizzas && pizzas.length>0">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Pizza Name</th>
+            <th>Ingredients</th>
+            <th>Price</th>
+            <th>Order Now</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pizza of pizzas">
+            <td>
+                <img [src]="pizza.imageUrl" [alt]="pizza.pizzaName" height="100px" width="100px">
+            </td>
+            <td><span [innerText]="pizza.pizzaName"></span></td>
+            <td><span [innerText]="pizza.ingredients"></span></td>
+            <td><span [innerText]="pizza.price | currency:'INR'"></span></td>
+            <td>
+                <button class="btn btn-primary" (click)="onOrderSubmit(pizza)">Order Now!</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<div *ngIf="pizzaCountByName && pizzaCountByName.length>0">
+    <h2 [innerText]="pizzaCountTitle"></h2>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Pizza Name</th>
+                <th>Total Orders Received</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pizzaCount of pizzaCountByName">
+                <td><span [innerText]="pizzaCount._id"></span></td>
+                <td><span [innerText]="pizzaCount.count"></span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
